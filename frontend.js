@@ -3,7 +3,7 @@ const {readFileSync} = require('node:fs')
 const curDay = '01'
 
 let part01, part02
-({part01, part02} = require('./day-' + curDay + '/work.js'))
+({part01, part02} = require(`./day-${curDay}/work.js`))
 
 function dayForFile(inputFile) {
     const input = readFileSync(inputFile, 'utf-8').trim().replaceAll('\r', '')
@@ -13,7 +13,7 @@ function dayForFile(inputFile) {
 }
 
 console.log('Handling dummy input')
-dayForFile('./day-' + curDay + '/input-dummy.txt')
+dayForFile(`./day-${curDay}/input-dummy.txt`)
 
 console.log('Handling real input')
-dayForFile('./day-' + curDay + '/input.txt')
+dayForFile(`./day-${curDay}/input.txt`)
