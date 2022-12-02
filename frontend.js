@@ -1,6 +1,6 @@
 const {readFileSync} = require('node:fs')
 
-const curDay = '01'
+const curDay = '02'
 
 let part01, part02
 ({part01, part02} = require(`./day-${curDay}/work.js`))
