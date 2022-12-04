@@ -1,4 +1,4 @@
-const {sumOf, uniqueIn, range, intersection} = require("../util");
+const {sumOf, range, intersection} = require("../util");
 
 const NUM_ELVES_PER_GROUP = 3
 
