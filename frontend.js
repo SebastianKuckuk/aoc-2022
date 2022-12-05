@@ -1,12 +1,12 @@
 const {readFileSync} = require('node:fs')
 
-const curDay = '04'
+const curDay = '05'
 
 let part01, part02
 ({part01, part02} = require(`./day-${curDay}/work.js`))
 
 function dayForFile(inputFile) {
-    const input = readFileSync(inputFile, 'utf-8').trim().replaceAll('\r', '')
+    const input = readFileSync(inputFile, 'utf-8')/*.trim()*/.replaceAll('\r', '')
 
     console.log('\tAnswer for part 1 is ' + part01(input))
     console.log('\tAnswer for part 2 is ' + part02(input))
