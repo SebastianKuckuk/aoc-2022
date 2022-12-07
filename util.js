@@ -3,6 +3,14 @@ module.exports = {
         return array.reduce((a, b) => a + b, 0)
     },
 
+    minOf: function minOf(array) {
+        return array.sort((a, b) => a - b)[0]
+    },
+
+    maxOf: function maxOf(array) {
+        return array.sort((a, b) => -(a - b))[0]
+    },
+
     range: function range(begin, end, step = 1) {
         return [...Array((end - begin) / step).keys()].map(i => begin + i * step)
     },
