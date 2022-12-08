@@ -11,6 +11,14 @@ module.exports = {
         return array.sort((a, b) => -(a - b))[0]
     },
 
+    allOf: function allOf(array) {
+        return array.reduce((a, b) => a && b, true)
+    },
+
+    anyOf: function anyOf(array) {
+        return array.reduce((a, b) => a || b, true)
+    },
+
     range: function range(begin, end, step = 1) {
         return [...Array((end - begin) / step).keys()].map(i => begin + i * step)
     },
