@@ -3,6 +3,10 @@ module.exports = {
         return array.reduce((a, b) => a + b, 0)
     },
 
+    prodOf: function sumOf(array) {
+        return array.reduce((a, b) => a * b, 1)
+    },
+
     minOf: function minOf(array) {
         return array.sort((a, b) => a - b)[0]
     },

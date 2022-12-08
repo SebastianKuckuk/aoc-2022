@@ -1,4 +1,4 @@
-const {range, sumOf, allOf, maxOf} = require("../util");
+const {range, sumOf, allOf, maxOf, prodOf} = require("../util");
 
 function parseInput(input) {
     return input.split('\n').map(row => row.split('').map(c => parseInt(c.toString())))
@@ -25,44 +25,24 @@ module.exports = {
         const grid = parseInput(input)
         const [nRow, nCol] = [grid.length, grid[0].length]
 
+        function outlook(row, col, dir, step, maxStep) {
+            if (step > maxStep)
+                return 0
+
+            if (grid[row + step * dir[0]][col + step * dir[1]] >= grid[row][col])
+                return 1
+            return 1 + outlook(row, col, dir, step + 1, maxStep)
+        }
+
         return maxOf(
             range(1, nRow - 1).flatMap(row =>
-                range(1, nCol - 1).map(col => {
-                    let score = 1
-
-                    let localScore = 0
-                    for (let rowOff = row - 1; rowOff >= 0; --rowOff) {
-                        ++localScore
-                        if (grid[rowOff][col] >= grid[row][col])
-                            break
-                    }
-                    score *= localScore
-
-                    localScore = 0
-                    for (let rowOff = row + 1; rowOff < nRow; ++rowOff) {
-                        ++localScore
-                        if (grid[rowOff][col] >= grid[row][col])
-                            break
-                    }
-                    score *= localScore
-
-                    localScore = 0
-                    for (let colOff = col - 1; colOff >= 0; --colOff) {
-                        ++localScore
-                        if (grid[row][colOff] >= grid[row][col])
-                            break
-                    }
-                    score *= localScore
-
-                    localScore = 0
-                    for (let colOff = col + 1; colOff < nCol; ++colOff) {
-                        ++localScore
-                        if (grid[row][colOff] >= grid[row][col])
-                            break
-                    }
-                    score *= localScore
-
-                    return score
-                })))
+                range(1, nCol - 1).map(col =>
+                    prodOf([
+                        outlook(row, col, [-1, 0], 1, row),
+                        outlook(row, col, [1, 0], 1, nRow - 1 - row),
+                        outlook(row, col, [0, -1], 1, col),
+                        outlook(row, col, [0, 1], 1, nCol - 1 - col)
+                    ])
+                )))
     }
 }
