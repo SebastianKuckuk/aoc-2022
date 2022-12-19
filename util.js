@@ -27,6 +27,10 @@ module.exports = {
         return [...Array((end - begin) / step).keys()].map(i => begin + i * step)
     },
 
+    sumOfRange: function sumOfRange(begin, end) {
+        return (end - 1) * end / 2 - (begin - 1) * begin / 2
+    },
+
     uniqueIn: function uniqueIn(array) {
         return [...(new Set(array))]
     },
